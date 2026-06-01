@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,9 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/users', function () {
-    return view('users.index');
-})->middleware('auth')->name('users.index');
+
+Route::prefix('users')->group( function() {
+    Route::get('index', [UserController::class, 'index'])->name('users.index');
+});
 
 // Settings / General page
 Route::get('/settings/general', function () {
