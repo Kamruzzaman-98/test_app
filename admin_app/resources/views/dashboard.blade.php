@@ -38,7 +38,7 @@
         </div>
 
         <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning">
+            <div class="small-box bg-primary">
                 <div class="inner">
                     <h3>{{ $totalProducts ?? 0 }}</h3>
                     <p>Total </p>
