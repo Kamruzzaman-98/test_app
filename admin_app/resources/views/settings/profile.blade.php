@@ -97,7 +97,17 @@
         </div>
     </section>
     <script>
-        window.successMessage = "{{ session('success') }}";
+        window.successMessage = @json(session('success'));
+        window.errorMessage = @json($errors->first());
+    </script>
+
+    <script>
+        document.getElementById('image').addEventListener('change', function() {
+            if (this.files.length > 0) {
+                document.querySelector('.custom-file-label').innerText =
+                    this.files[0].name;
+            }
+        });
     </script>
 
     <script src="{{ asset('js/custom_alert.js') }}"></script>

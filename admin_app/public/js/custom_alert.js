@@ -12,4 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    if (window.errorMessage) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: window.errorMessage
+        });
+    }
+
 });
