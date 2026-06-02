@@ -7,14 +7,14 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h3>{{ $totalUsers ?? 0 }}</h3>
-                    <p>Total </p>
+                    <p>Total Users</p>
                 </div>
 
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
 
-                <a href="#" class="small-box-footer">
+                <a href="{{ route('users.index') }}" class="small-box-footer">
                     More Info <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>

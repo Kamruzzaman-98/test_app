@@ -1,17 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/reports', function () {
     return view('reports.index');
@@ -20,9 +16,9 @@ Route::get('/reports', function () {
 Route::get('/admin/profile', [ProfileController::class, 'index'])->name('admin.profile');
 Route::post('/admin/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
 
-
-Route::prefix('users')->group(function () {
+Route::prefix('users')->middleware('auth')->group(function () {
     Route::get('index', [UserController::class, 'index'])->name('users.index');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::get('/settings/general', function () {
