@@ -66,10 +66,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Profile Image</label>
-                                    <input type="file" name="image" class="form-control">
+                                    <label for="image">Profile Image</label>
 
-                                    <small class="text-muted">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="image" name="image">
+                                        <label class="custom-file-label" for="image">Choose file</label>
+                                    </div>
+
+                                    <small class="text-muted d-block mt-2">
                                         Allowed: jpg, jpeg, png (max 2MB)
                                     </small>
                                 </div>
@@ -92,4 +96,9 @@
 
         </div>
     </section>
+    <script>
+        window.successMessage = "{{ session('success') }}";
+    </script>
+
+    <script src="{{ asset('js/custom_alert.js') }}"></script>
 @endsection
