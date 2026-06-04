@@ -24,7 +24,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('users', [UserController::class, 'index'])->name('users.index');
     });
 
-     Route::middleware('permission:dashboard.view')->group(function () {
+    Route::middleware(['auth','permission:dashboard.view'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     });
 });
@@ -45,6 +45,8 @@ Route::get('foods', function () {
 Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::middleware('permission:role.view')->get('roles', [RoleController::class, 'index']);
+    Route::middleware('permission:role.edit')->get('roles/{role}/permissions', [RoleController::class, 'editPermissions'])->name('roles.permissions.edit');
+    Route::middleware('permission:role.edit')->post('roles/{role}/permissions', [RoleController::class, 'updatePermissions'])->name('roles.permissions.update');
     Route::middleware('permission:role.create')->post('roles', [RoleController::class, 'store']);
     Route::middleware('permission:role.edit')->put('roles/{role}', [RoleController::class, 'update']);
     Route::middleware('permission:role.delete')->delete('roles/{role}', [RoleController::class, 'destroy']);

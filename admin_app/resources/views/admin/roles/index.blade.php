@@ -44,6 +44,10 @@
                                         Delete
                                     </button>
                                 </form>
+
+                                <a href="{{ route('roles.permissions.edit', $role->id) }}" class="btn btn-warning btn-sm">
+                                    Permissions
+                                </a>
                             </td>
                         </tr>
                     @endforeach
