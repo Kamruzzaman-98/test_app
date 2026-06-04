@@ -36,20 +36,16 @@ class RoleController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        //
+        return view('admin.roles.edit', compact('role'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $role->update(['name' => $request->name]);
+
+        return redirect()->route('roles.index');
     }
 
     /**
