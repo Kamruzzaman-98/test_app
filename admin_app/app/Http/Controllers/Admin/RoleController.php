@@ -28,14 +28,6 @@ class RoleController extends Controller
         return redirect()->route('roles.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     public function edit(Role $role)
     {
         return view('admin.roles.edit', compact('role'));
@@ -48,11 +40,10 @@ class RoleController extends Controller
         return redirect()->route('roles.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        return back();
     }
 }
