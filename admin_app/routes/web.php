@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\ProfileController;
@@ -32,5 +33,11 @@ Route::get('/settings/profile', function () {
 Route::get('foods', function () {
     return view('foods.index');
 })->middleware('auth')->name('foods.index');
+
+
+Route::prefix('admin')->group(function () {
+    Route::resource('roles', RoleController::class);
+});
+
 
 require __DIR__ . '/auth.php';

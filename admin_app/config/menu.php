@@ -7,7 +7,7 @@ return [
         'title' => 'Dashboard',
         'icon' => 'fas fa-tachometer-alt',
         'route' => 'dashboard',
-        'children' => [], 
+        'children' => [],
     ],
 
     [
@@ -34,7 +34,7 @@ return [
     [
         'title' => 'Settings',
         'icon' => 'fas fa-cogs',
-        'route' => null, 
+        'route' => null,
         'children' => [
             [
                 'title' => 'General',
@@ -43,6 +43,19 @@ return [
             [
                 'title' => 'Profile',
                 'route' => 'settings.profile',
+            ],
+        ],
+    ],
+
+
+    [
+        'title' => 'Access Control',
+        'icon' => 'fas fa-lock',
+        'route' => null,
+        'children' => [
+            [
+                'title' => 'Roles',
+                'route' => 'roles.index',
             ],
         ],
     ],
