@@ -18,9 +18,15 @@ Route::get('/reports', function () {
 Route::get('/admin/profile', [ProfileController::class, 'index'])->name('admin.profile');
 Route::post('/admin/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
 
-Route::prefix('users')->middleware('auth')->group(function () {
-    Route::get('index', [UserController::class, 'index'])->name('users.index');
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+
+    Route::middleware('permission:user.view')->group(function () {
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+    });
+
+     Route::middleware('permission:dashboard.view')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    });
 });
 
 Route::get('/settings/general', function () {
@@ -36,10 +42,17 @@ Route::get('foods', function () {
 })->middleware('auth')->name('foods.index');
 
 
-Route::prefix('admin')->group(function () {
-    Route::resource('roles', RoleController::class);
-    Route::resource('permissions', PermissionController::class);
-});
+Route::prefix('admin')->middleware(['auth'])->group(function () {
 
+    Route::middleware('permission:role.view')->get('roles', [RoleController::class, 'index']);
+    Route::middleware('permission:role.create')->post('roles', [RoleController::class, 'store']);
+    Route::middleware('permission:role.edit')->put('roles/{role}', [RoleController::class, 'update']);
+    Route::middleware('permission:role.delete')->delete('roles/{role}', [RoleController::class, 'destroy']);
+
+    Route::middleware('permission:permission.view')->get('permissions', [PermissionController::class, 'index']);
+    Route::middleware('permission:permission.create')->post('permissions', [PermissionController::class, 'store']);
+    Route::middleware('permission:permission.edit')->put('permissions/{permission}', [PermissionController::class, 'update']);
+    Route::middleware('permission:permission.delete')->delete('permissions/{permission}', [PermissionController::class, 'destroy']);
+});
 
 require __DIR__ . '/auth.php';

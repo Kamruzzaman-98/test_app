@@ -29,7 +29,7 @@
                             <td>{{ $role->name }}</td>
                             <td>
 
-                                <a href="javascript:void(0)" class="btn btn-sm btn-info edit-btn"
+                                <a href="javascript:void(0)" class="btn btn-sm btn-info role-edit-btn"
                                     data-id="{{ $role->id }}" data-name="{{ $role->name }}"
                                     data-url="{{ route('roles.update', $role->id) }}">
                                     Edit
@@ -126,5 +126,8 @@
         window.successMessage = @json(session('success'));
     </script>
 
-    <script src="{{ asset('js/custom_alert.js') }}"></script>
+    @push('scripts')
+        <script src="{{ asset('js/custom_alert.js') }}"></script>
+        <script src="{{ asset('js/roles.js') }}"></script>
+    @endpush
 @endsection

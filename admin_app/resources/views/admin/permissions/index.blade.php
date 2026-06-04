@@ -30,18 +30,15 @@
                             <td>
 
                                 {{-- Edit Button --}}
-                                <a href="javascript:void(0)"
-                                   class="btn btn-sm btn-info edit-btn"
-                                   data-id="{{ $permission->id }}"
-                                   data-name="{{ $permission->name }}"
-                                   data-url="{{ route('permissions.update', $permission->id) }}">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-info permission-edit-btn"
+                                    data-id="{{ $permission->id }}" data-name="{{ $permission->name }}"
+                                    data-url="{{ route('permissions.update', $permission->id) }}">
                                     Edit
                                 </a>
 
                                 {{-- Delete --}}
-                                <form action="{{ route('permissions.destroy', $permission->id) }}"
-                                      method="POST"
-                                      style="display:inline-block;">
+                                <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST"
+                                    style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
 
@@ -77,8 +74,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Permission Name</label>
-                            <input type="text" name="name" class="form-control"
-                                   placeholder="e.g. user.view" required>
+                            <input type="text" name="name" class="form-control" placeholder="e.g. user.view" required>
                         </div>
                     </div>
 
@@ -132,6 +128,8 @@
         window.successMessage = @json(session('success'));
     </script>
 
-    <script src="{{ asset('js/custom_alert.js') }}"></script>
-
+    @push('scripts')
+        <script src="{{ asset('js/custom_alert.js') }}"></script>
+        <script src="{{ asset('js/permissions.js') }}"></script>
+    @endpush
 @endsection
