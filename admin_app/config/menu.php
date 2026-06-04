@@ -57,6 +57,10 @@ return [
                 'title' => 'Roles',
                 'route' => 'roles.index',
             ],
+            [
+                'title' => 'Permissions',
+                'route' => 'permissions.index',
+            ],
         ],
     ],
 

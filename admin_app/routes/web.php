@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\UserController;
@@ -37,6 +38,7 @@ Route::get('foods', function () {
 
 Route::prefix('admin')->group(function () {
     Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
 });
 
 
