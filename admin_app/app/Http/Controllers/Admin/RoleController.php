@@ -14,20 +14,18 @@ class RoleController extends Controller
         return view('admin.roles.index', compact('roles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.roles.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        Role::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('roles.index');
     }
 
     /**
