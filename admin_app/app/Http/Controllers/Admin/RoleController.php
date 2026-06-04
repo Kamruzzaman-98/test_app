@@ -14,36 +14,53 @@ class RoleController extends Controller
         return view('admin.roles.index', compact('roles'));
     }
 
+
     public function create()
     {
         return view('admin.roles.create');
     }
 
+
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:roles,name',
+        ]);
+
         Role::create([
             'name' => $request->name
         ]);
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')
+            ->with('success', 'Role created successfully!');
     }
+
 
     public function edit(Role $role)
     {
         return view('admin.roles.edit', compact('role'));
     }
 
+
     public function update(Request $request, Role $role)
     {
-        $role->update(['name' => $request->name]);
+        $request->validate([
+            'name' => 'required|unique:roles,name,' . $role->id,
+        ]);
 
-        return redirect()->route('roles.index');
+        $role->update([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('roles.index')
+            ->with('success', 'Role updated successfully!');
     }
+
 
     public function destroy(Role $role)
     {
         $role->delete();
 
-        return back();
+        return redirect()->route('roles.index')->with('success', 'Role deleted successfully!');
     }
 }

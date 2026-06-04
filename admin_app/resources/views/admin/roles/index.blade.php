@@ -18,6 +18,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Role Name</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -26,6 +27,24 @@
                         <tr>
                             <td>{{ $role->id }}</td>
                             <td>{{ $role->name }}</td>
+                            <td>
+
+                                <a href="javascript:void(0)" class="btn btn-sm btn-info edit-btn"
+                                    data-id="{{ $role->id }}" data-name="{{ $role->name }}"
+                                    data-url="{{ route('roles.update', $role->id) }}">
+                                    Edit
+                                </a>
+
+                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST"
+                                    style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-sm btn-danger delete-btn">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -68,4 +87,44 @@
             </div>
         </div>
     </div>
+
+    {{-- Edit Role Modal --}}
+    <div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Role</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+
+                <form method="POST" id="editRoleForm">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Role Name</label>
+                            <input type="text" name="name" id="editRoleName" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.successMessage = @json(session('success'));
+    </script>
+
+    <script src="{{ asset('js/custom_alert.js') }}"></script>
 @endsection
