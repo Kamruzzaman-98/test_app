@@ -3,8 +3,11 @@
 @section('content')
 
 <div class="card">
+
     <div class="card-header">
-        <h3>Assign Permissions to Role: {{ $role->name }}</h3>
+        <h3 class="card-title">
+            Assign Permissions to Role: {{ $role->name }}
+        </h3>
     </div>
 
     <div class="card-body">
@@ -20,7 +23,7 @@
                             <input type="checkbox"
                                    name="permissions[]"
                                    value="{{ $permission->name }}"
-                                   {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}>
+                                   {{ in_array($permission->name, $rolePermissions) ? 'checked' : '' }}>
                             {{ $permission->name }}
                         </label>
                     </div>
@@ -30,10 +33,14 @@
 
             <br>
 
-            <button class="btn btn-primary">Save Permissions</button>
+            <button type="submit" class="btn btn-primary">
+                Save Permissions
+            </button>
+
         </form>
 
     </div>
+
 </div>
 
 @endsection

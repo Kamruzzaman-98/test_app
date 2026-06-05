@@ -66,18 +66,23 @@ class RoleController extends Controller
     }
 
 
-    public function editPermissions(Role $role)
+    public function editPermissions($id)
     {
+        $role = Role::findById($id);
+
         $permissions = Permission::all();
-        $rolePermissions = $role->permissions->pluck('id')->toArray();
+
+        $rolePermissions = $role->permissions->pluck('name')->toArray();
 
         return view('admin.roles.permissions', compact('role', 'permissions', 'rolePermissions'));
     }
 
-    public function updatePermissions(Request $request, Role $role)
+    public function updatePermissions(Request $request, $id)
     {
+        $role = Role::findById($id);
+
         $role->syncPermissions($request->permissions ?? []);
 
-        return redirect()->back()->with('success', 'Permissions updated successfully');
+        return back()->with('success', 'Permissions updated successfully');
     }
 }

@@ -51,11 +51,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::middleware('permission:role.edit')->put('roles/{role}', [RoleController::class, 'update'])->name('roles.update');
     Route::middleware('permission:role.delete')->delete('roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
 
-
     Route::middleware('permission:permission.view')->get('permissions', [PermissionController::class, 'index'])->name('permissions.index');
     Route::middleware('permission:permission.create')->post('permissions', [PermissionController::class, 'store'])->name('permissions.store');
     Route::middleware('permission:permission.edit')->put('permissions/{permission}', [PermissionController::class, 'update'])->name('permissions.update');
     Route::middleware('permission:permission.delete')->delete('permissions/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
+
+    Route::get('admin/roles/{role}/permissions', [RoleController::class, 'editPermissions'])->name('roles.permissions.edit');
+    Route::post('admin/roles/{role}/permissions', [RoleController::class, 'updatePermissions'])->name('roles.permissions.update');
 });
 
 require __DIR__ . '/auth.php';
