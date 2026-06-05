@@ -2,7 +2,6 @@
 
 return [
 
-    // Main menu items
     [
         'title' => 'Dashboard',
         'icon' => 'fas fa-tachometer-alt',
@@ -14,6 +13,7 @@ return [
         'title' => 'Users',
         'icon' => 'fas fa-users',
         'route' => 'users.index',
+        'permission' => 'user.view',
         'children' => [],
     ],
 
