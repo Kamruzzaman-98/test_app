@@ -52,14 +52,17 @@ return [
         'title' => 'Access Control',
         'icon' => 'fas fa-lock',
         'route' => null,
+        'permission' => 'role.view',
         'children' => [
             [
                 'title' => 'Roles',
                 'route' => 'roles.index',
+                'permission' => 'role.view',
             ],
             [
                 'title' => 'Permissions',
                 'route' => 'permissions.index',
+                'permission' => 'permission.view',
             ],
         ],
     ],

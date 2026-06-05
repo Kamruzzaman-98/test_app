@@ -58,6 +58,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::get('admin/roles/{role}/permissions', [RoleController::class, 'editPermissions'])->name('roles.permissions.edit');
     Route::post('admin/roles/{role}/permissions', [RoleController::class, 'updatePermissions'])->name('roles.permissions.update');
+
+    Route::middleware('permission:user.edit')->post('users/{user}/assign-role', [UserController::class, 'assignRole'])->name('users.assignRole');
 });
 
 require __DIR__ . '/auth.php';
