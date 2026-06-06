@@ -5,9 +5,11 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title">All Users</h3>
 
-            <a href="{{ route('users.create') }}" class="btn btn-success btn-sm">
-                <i class="fas fa-plus"></i> Create User
-            </a>
+            @can('user.create')
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#createUserModal">
+                    <i class="fas fa-plus"></i> Create User
+                </button>
+            @endcan
         </div>
 
         <div class="card-body">
