@@ -44,6 +44,9 @@ Route::get('foods', function () {
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
 
+    Route::middleware('permission:user.create')->get('users/create', [UserController::class, 'create'])->name('users.create');
+    Route::middleware('permission:user.create')->post('users/store',[UserController::class, 'store'])->name('users.store');
+
     Route::middleware('permission:role.view')->get('roles', [RoleController::class, 'index'])->name('roles.index');
     Route::middleware('permission:role.edit')->get('roles/{role}/permissions', [RoleController::class, 'editPermissions'])->name('roles.permissions.edit');
     Route::middleware('permission:role.edit')->post('roles/{role}/permissions', [RoleController::class, 'updatePermissions'])->name('roles.permissions.update');
@@ -56,8 +59,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::middleware('permission:permission.edit')->put('permissions/{permission}', [PermissionController::class, 'update'])->name('permissions.update');
     Route::middleware('permission:permission.delete')->delete('permissions/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
 
-    Route::get('admin/roles/{role}/permissions', [RoleController::class, 'editPermissions'])->name('roles.permissions.edit');
-    Route::post('admin/roles/{role}/permissions', [RoleController::class, 'updatePermissions'])->name('roles.permissions.update');
+    
 
     Route::middleware('permission:user.edit')->post('users/{user}/assign-role', [UserController::class, 'assignRole'])->name('users.assignRole');
 });

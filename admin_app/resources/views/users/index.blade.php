@@ -2,8 +2,12 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title">All Users</h3>
+
+            <a href="{{ route('users.create') }}" class="btn btn-success btn-sm">
+                <i class="fas fa-plus"></i> Create User
+            </a>
         </div>
 
         <div class="card-body">
@@ -47,6 +51,63 @@
                 </tbody>
 
             </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="createUserModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form action="{{ route('users.store') }}" method="POST">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create User</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+
+                        <div class="form-group mt-2">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group mt-2">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+
+                        <div class="form-group mt-2">
+                            <label>Role</label>
+
+                            <select name="role" class="form-control" required>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->name }}">
+                                        {{ $role->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">
+                            Create User
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
         </div>
     </div>
 
