@@ -45,7 +45,7 @@ Route::get('foods', function () {
 Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::middleware('permission:user.create')->get('users/create', [UserController::class, 'create'])->name('users.create');
-    Route::middleware('permission:user.create')->post('users/store',[UserController::class, 'store'])->name('users.store');
+    Route::middleware('permission:user.create')->post('users/store', [UserController::class, 'store'])->name('users.store');
 
     Route::middleware('permission:role.view')->get('roles', [RoleController::class, 'index'])->name('roles.index');
     Route::middleware('permission:role.edit')->get('roles/{role}/permissions', [RoleController::class, 'editPermissions'])->name('roles.permissions.edit');
@@ -62,6 +62,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::middleware('permission:user.edit')->post('users/{user}/assign-role', [UserController::class, 'assignRole'])->name('users.assignRole');
 
     Route::middleware('permission:user.edit')->put('users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::middleware('permission:user.delete')->delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
 require __DIR__ . '/auth.php';

@@ -53,6 +53,13 @@
                                         Edit
                                     </button>
                                 @endcan
+
+                                @can('user.delete')
+                                    <button class="btn btn-danger btn-sm delete-btn"
+                                        data-url="{{ route('users.destroy', $user->id) }}">
+                                        Delete
+                                    </button>
+                                @endcan
                             </td>
                         </tr>
 

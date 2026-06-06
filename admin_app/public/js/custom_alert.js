@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+
     document.querySelectorAll('.delete-btn').forEach(button => {
 
         button.addEventListener('click', function (e) {
@@ -46,4 +46,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     });
-});
+

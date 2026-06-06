@@ -123,7 +123,6 @@
         </div>
     </div>
 
-    {{-- SweetAlert support --}}
     <script>
         window.successMessage = @json(session('success'));
     </script>
