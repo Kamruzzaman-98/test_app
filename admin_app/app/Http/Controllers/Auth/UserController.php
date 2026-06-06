@@ -40,6 +40,27 @@ class UserController extends Controller
             ->with('success', 'User created successfully');
     }
 
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'role' => 'required',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        $user->syncRoles([$request->role]);
+
+        return redirect()->route('users.index')
+            ->with('success', 'User updated successfully');
+    }
+
     public function assignRole(Request $request, User $user)
     {
         $request->validate([

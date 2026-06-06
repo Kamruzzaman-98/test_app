@@ -59,9 +59,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::middleware('permission:permission.edit')->put('permissions/{permission}', [PermissionController::class, 'update'])->name('permissions.update');
     Route::middleware('permission:permission.delete')->delete('permissions/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
 
-    
-
     Route::middleware('permission:user.edit')->post('users/{user}/assign-role', [UserController::class, 'assignRole'])->name('users.assignRole');
+
+    Route::middleware('permission:user.edit')->put('users/{user}', [UserController::class, 'update'])->name('users.update');
 });
 
 require __DIR__ . '/auth.php';

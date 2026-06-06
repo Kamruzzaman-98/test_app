@@ -47,8 +47,70 @@
                             <td>
                                 <button type="submit" class="btn btn-primary btn-sm mt-1">Save</button>
                                 </form>
+                                @can('user.edit')
+                                    <button type="button" class="btn btn-warning btn-sm mt-1" data-toggle="modal"
+                                        data-target="#editUserModal{{ $user->id }}">
+                                        Edit
+                                    </button>
+                                @endcan
                             </td>
                         </tr>
+
+                        <div class="modal fade" id="editUserModal{{ $user->id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <form action="{{ route('users.update', $user->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit User</h5>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <span>&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="modal-body">
+
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                <input type="text" name="name" value="{{ $user->name }}"
+                                                    class="form-control">
+                                            </div>
+
+                                            <div class="form-group mt-2">
+                                                <label>Email</label>
+                                                <input type="email" name="email" value="{{ $user->email }}"
+                                                    class="form-control">
+                                            </div>
+
+                                            <div class="form-group mt-2">
+                                                <label>Role</label>
+
+                                                <select name="role" class="form-control">
+                                                    @foreach ($roles as $role)
+                                                        <option value="{{ $role->name }}"
+                                                            {{ $user->hasRole($role->name) ? 'selected' : '' }}>
+                                                            {{ $role->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">
+                                                Update
+                                            </button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
                 </tbody>
 
