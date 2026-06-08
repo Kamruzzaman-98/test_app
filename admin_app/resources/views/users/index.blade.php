@@ -55,10 +55,14 @@
                                 @endcan
 
                                 @can('user.delete')
-                                    <button class="btn btn-danger btn-sm delete-btn"
-                                        data-url="{{ route('users.destroy', $user->id) }}">
-                                        Delete
-                                    </button>
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                        class="d-inline delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger btn-sm delete-btn">
+                                            Delete
+                                        </button>
+                                    </form>
                                 @endcan
                             </td>
                         </tr>
