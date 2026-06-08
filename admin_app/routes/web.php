@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\AIController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\ProfileController;
@@ -40,6 +41,9 @@ Route::get('/settings/profile', function () {
 Route::get('foods', function () {
     return view('foods.index');
 })->middleware('auth')->name('foods.index');
+
+Route::get('/ai-assistant', [AIController::class, 'index'])->name('ai.index');
+Route::post('/ai-assistant/ask', [AIController::class, 'ask'])->name('ai.ask');
 
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {

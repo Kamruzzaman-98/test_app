@@ -25,6 +25,13 @@ return [
     ],
 
     [
+        'title' => 'AI Assistant',
+        'icon' => 'nav-icon fas fa-robot',
+        'route' => 'ai.index',
+        'children' => [],
+    ],
+
+    [
         'title' => 'Food',
         'icon' => 'fas fa-coffee',
         'route' => 'foods.index',
