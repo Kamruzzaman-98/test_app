@@ -1,5 +1,6 @@
 @php
     $user = Auth::user();
+    $role = $user->getRoleNames()->first();
 @endphp
 
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -25,7 +26,7 @@
 
         <li class="nav-item dropdown">
 
-            <a class="nav-link" data-toggle="dropdown" href="#">
+            <a class="nav-link d-flex align-items-center" data-toggle="dropdown" href="#">
 
                 @if ($user->image)
                     <img src="{{ asset($user->image) }}" class="img-circle elevation-2" width="30" height="30"
@@ -34,9 +35,25 @@
                     <i class="fas fa-user-circle fa-lg"></i>
                 @endif
 
+                <span class="ml-2 text-dark">
+                    {{ ucfirst($role) }}
+                </span>
+
             </a>
 
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+
+                <div class="dropdown-item text-center">
+
+                    <strong>{{ $user->name }}</strong><br>
+
+                    <span class="badge badge-success">
+                        {{ ucfirst($role) }}
+                    </span>
+
+                </div>
+
+                <div class="dropdown-divider"></div>
 
                 <a href="{{ route('settings.profile') }}" class="dropdown-item">
                     <i class="fas fa-user mr-2"></i> Profile
