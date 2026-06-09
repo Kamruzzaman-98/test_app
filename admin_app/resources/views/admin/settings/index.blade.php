@@ -12,20 +12,14 @@
 
                 <div class="form-group">
                     <label>Site Name</label>
-                    <input type="text"
-                           name="site_name"
-                           class="form-control"
-                           value="{{ setting('site_name') }}"
-                           placeholder="Enter site name">
+                    <input type="text" name="site_name" class="form-control" value="{{ setting('site_name') }}"
+                        placeholder="Enter site name">
                 </div>
 
                 <div class="form-group">
                     <label>Site Email</label>
-                    <input type="text"
-                           name="site_email"
-                           class="form-control"
-                           value="{{ setting('site_email') }}"
-                           placeholder="Enter site email">
+                    <input type="text" name="site_email" class="form-control" value="{{ setting('site_email') }}"
+                        placeholder="Enter site email">
                 </div>
 
                 <div class="form-group mt-3">
@@ -37,4 +31,11 @@
             </form>
         </div>
     </div>
+    <script>
+        window.successMessage = @json(session('success'));
+    </script>
+
+    @push('scripts')
+        <script src="{{ asset('js/custom_alert.js') }}"></script>
+    @endpush
 @endsection
