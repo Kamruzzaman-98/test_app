@@ -25,6 +25,23 @@
     <ul class="navbar-nav ml-auto">
 
         <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="fas fa-language"></i>
+                {{ app()->getLocale() == 'bn' ? 'বাংলা' : 'English' }}
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right">
+                <a href="{{ route('language.switch', 'en') }}" class="dropdown-item">
+                    🇺🇸 English
+                </a>
+
+                <a href="{{ route('language.switch', 'bn') }}" class="dropdown-item">
+                    🇧🇩 বাংলা
+                </a>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown">
 
             <a class="nav-link d-flex align-items-center" data-toggle="dropdown" href="#">
 

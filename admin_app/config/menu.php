@@ -3,14 +3,14 @@
 return [
 
     [
-        'title' => 'Dashboard',
+        'title' => 'messages.dashboard',
         'icon' => 'fas fa-tachometer-alt',
         'route' => 'dashboard',
         'children' => [],
     ],
 
     [
-        'title' => 'Users',
+        'title' => 'messages.users',
         'icon' => 'fas fa-users',
         'route' => 'users.index',
         'permission' => 'user.view',
@@ -18,28 +18,28 @@ return [
     ],
 
     [
-        'title' => 'Reports',
+        'title' => 'messages.reports',
         'icon' => 'fas fa-chart-bar',
         'route' => 'reports.index',
         'children' => [],
     ],
 
     [
-        'title' => 'AI Assistant',
+        'title' => 'messages.ai_assistant',
         'icon' => 'nav-icon fas fa-robot',
         'route' => 'ai.index',
         'children' => [],
     ],
 
     [
-        'title' => 'Food',
+        'title' => 'messages.food',
         'icon' => 'fas fa-coffee',
         'route' => 'foods.index',
         'children' => [],
     ],
 
     [
-        'title' => 'Settings',
+        'title' => 'messages.settings',
         'icon' => 'fas fa-cogs',
         'route' => null,
         'children' => [
@@ -56,7 +56,7 @@ return [
 
 
     [
-        'title' => 'Access Control',
+        'title' => 'messages.access_control',
         'icon' => 'fas fa-lock',
         'route' => null,
         'permission' => 'role.view',

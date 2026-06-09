@@ -22,7 +22,7 @@
                                 class="nav-link {{ request()->routeIs($menu['route']) ? 'active' : '' }}">
                                 <i class="nav-icon {{ $menu['icon'] }}"></i>
                                 <p>
-                                    {{ $menu['title'] }}
+                                    {{ __($menu['title']) }}
                                     @if ($children->isNotEmpty())
                                         <i class="right fas fa-angle-left"></i>
                                     @endif

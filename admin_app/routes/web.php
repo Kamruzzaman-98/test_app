@@ -45,6 +45,16 @@ Route::get('foods', function () {
 Route::get('/ai-assistant', [AIController::class, 'index'])->name('ai.index');
 Route::post('/ai-assistant/ask', [AIController::class, 'ask'])->name('ai.ask');
 
+Route::get('/language/{locale}', function ($locale) {
+
+    if (in_array($locale, ['en', 'bn'])) {
+        session()->put('locale', $locale);
+    }
+
+    return redirect()->back();
+
+})->name('language.switch');
+
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
 
