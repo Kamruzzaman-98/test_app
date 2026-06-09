@@ -12,11 +12,35 @@ class SettingSeeder extends Seeder
         Setting::insert([
             [
                 'key' => 'site_name',
-                'value' => 'My Admin Panel'
+                'value' => 'Admin Panel'
             ],
             [
                 'key' => 'site_email',
                 'value' => 'admin@test.com'
+            ],
+            [
+                'key' => 'contact_phone',
+                'value' => ''
+            ],
+            [
+                'key' => 'app_name',
+                'value' => ''
+            ],
+            [
+                'key' => 'address',
+                'value' => ''
+            ],
+            [
+                'key' => 'timezone',
+                'value' => 'Asia/Dhaka'
+            ],
+            [
+                'key' => 'pagination_limit',
+                'value' => '10'
+            ],
+            [
+                'key' => 'site_logo',
+                'value' => ''
             ],
         ]);
     }

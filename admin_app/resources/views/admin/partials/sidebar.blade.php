@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
     <a href="{{ route('dashboard') }}" class="brand-link">
-        <span class="brand-text font-weight-light">BANGLADESH</span>
+        <span class="brand-text font-weight-light">{{ setting('site_name') }}</span>
     </a>
 
     <div class="sidebar">
