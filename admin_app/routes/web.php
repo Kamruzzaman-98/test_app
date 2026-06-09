@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AIController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\UserController;
@@ -52,7 +53,6 @@ Route::get('/language/{locale}', function ($locale) {
     }
 
     return redirect()->back();
-
 })->name('language.switch');
 
 
@@ -77,6 +77,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::middleware('permission:user.edit')->put('users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::middleware('permission:user.delete')->delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::middleware('permission:setting.view')->get('settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::middleware('permission:setting.edit')->post('settings', [SettingController::class, 'update'])->name('settings.update');
 });
 
 require __DIR__ . '/auth.php';

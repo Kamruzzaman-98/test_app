@@ -45,7 +45,7 @@ return [
         'children' => [
             [
                 'title' => 'General',
-                'route' => 'settings.general',
+                'route' => 'settings.index',
             ],
             [
                 'title' => 'Profile',
