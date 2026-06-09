@@ -2,11 +2,11 @@
 
     <div class="text-center mb-6">
 
-        <img src="{{ asset('images/' . (config('app.logo') ?? 'logo.png')) }}"
+        <img src="{{ asset('storage/' . setting('site_logo')) }}"
             class="w-20 h-20 mx-auto mb-3 rounded-full shadow border">
 
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">
-            {{ config('app.name') }}
+            {{ setting('app_name') }}
         </h1>
 
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">

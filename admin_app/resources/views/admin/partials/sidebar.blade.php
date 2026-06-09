@@ -1,7 +1,16 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-    <a href="{{ route('dashboard') }}" class="brand-link">
-        <span class="brand-text font-weight-light">{{ setting('site_name') }}</span>
+    <a href="{{ route('dashboard') }}" class="brand-link d-flex align-items-center">
+
+        @if (setting('site_logo'))
+            <img src="{{ asset('storage/' . setting('site_logo')) }}" alt="Logo"
+                class="brand-image img-circle elevation-3" style="height: 30px; width: 30px; object-fit: cover;">
+        @endif
+
+        <span class="brand-text font-weight-light ml-2">
+            {{ setting('app_name') }}
+        </span>
+
     </a>
 
     <div class="sidebar">

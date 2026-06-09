@@ -3,7 +3,23 @@
     $role = $user->getRoleNames()->first();
 @endphp
 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+{{-- <nav class="main-header navbar navbar-expand navbar-white navbar-light navbar-fixed-top"> --}}
+
+<style>
+    .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1030;
+    }
+
+    .content-wrapper {
+        margin-top: 57px;
+    }
+</style>
+
+<nav class="main-header navbar navbar-expand navbar-white navbar-light navbar-fixed-top">
 
 
     <ul class="navbar-nav">

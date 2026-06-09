@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Admin Panel</title>
+    <title>{{ setting('site_name') }}</title>
 
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
         @include('admin.partials.navbar')
