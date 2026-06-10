@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
@@ -80,6 +81,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::middleware('permission:setting.view')->get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::middleware('permission:setting.edit')->post('settings', [SettingController::class, 'update'])->name('settings.update');
+
+    Route::get('/activity-logs', [ActivityLogController::class, 'index'])->name('activity.logs');
 });
 
 require __DIR__ . '/auth.php';
