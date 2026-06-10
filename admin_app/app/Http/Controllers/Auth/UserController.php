@@ -35,6 +35,8 @@ class UserController extends Controller
 
         $user->assignRole($request->role);
 
+        activity_log('create', 'User', 'User created: ' . $user->name);
+
         return redirect()
             ->route('users.index')
             ->with('success', 'User created successfully');
@@ -57,6 +59,8 @@ class UserController extends Controller
 
         $user->syncRoles([$request->role]);
 
+        activity_log('update', 'User', 'User updated: ' . $user->name);
+
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully');
     }
@@ -65,6 +69,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
+
+        activity_log('delete', 'User', 'User deleted: ' . $user->name);
 
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
@@ -76,6 +82,8 @@ class UserController extends Controller
         ]);
 
         $user->syncRoles([$request->role]);
+
+        activity_log('update', 'User Role', 'Role changed for user: ' . $user->name);
 
         return back()->with('success', 'Role assigned successfully');
     }
