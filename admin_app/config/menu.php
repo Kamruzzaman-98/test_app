@@ -39,6 +39,13 @@ return [
     ],
 
     [
+        'title' => 'Activity Logs',
+        'icon' => 'fas fa-history',
+        'route' => 'activity.logs',
+        'children' => [],
+    ],
+
+    [
         'title' => 'messages.settings',
         'icon' => 'fas fa-cogs',
         'route' => null,
