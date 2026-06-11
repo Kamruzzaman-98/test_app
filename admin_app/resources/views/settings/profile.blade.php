@@ -5,18 +5,13 @@
         $user = Auth::user();
     @endphp
 
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Profile Settings</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="card">
 
-    <section class="content">
-        <div class="container-fluid">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="card-title">Profile Settings</h3>
+        </div>
+
+        <div class="card-body">
 
             <div class="row">
 
@@ -27,10 +22,10 @@
 
                             @if ($user->image)
                                 <img class="profile-user-img img-fluid img-circle" src="{{ asset($user->image) }}"
-                                    alt="User profile picture" style="width:100px; height:100px; object-fit:cover;">
+                                    style="width:100px;height:100px;object-fit:cover;">
                             @else
                                 <img class="profile-user-img img-fluid img-circle" src="{{ asset('default.png') }}"
-                                    alt="User profile picture" style="width:100px; height:100px;">
+                                    style="width:100px;height:100px;">
                             @endif
 
                             <h3 class="profile-username mt-3">{{ $user->name }}</h3>
@@ -43,16 +38,16 @@
 
                 <div class="col-md-8">
 
-                    <div class="card card-primary">
+                    <div class="card card-primary card-outline mb-3">
 
                         <div class="card-header">
                             <h3 class="card-title">Edit Profile</h3>
                         </div>
 
-                        <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                        <div class="card-body">
 
-                            <div class="card-body">
+                            <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
 
                                 <div class="form-group">
                                     <label>Name</label>
@@ -66,28 +61,58 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="image">Profile Image</label>
+                                    <label>Profile Image</label>
 
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="image" name="image">
-                                        <label class="custom-file-label" for="image">Choose file</label>
+                                        <label class="custom-file-label">Choose file</label>
                                     </div>
 
-                                    <small class="text-muted d-block mt-2">
-                                        Allowed: jpg, jpeg, png (max 2MB)
-                                    </small>
+                                    <small class="text-muted">jpg, jpeg, png (max 2MB)</small>
                                 </div>
 
-                            </div>
-
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">
+                                <button class="btn btn-primary">
                                     Update Profile
                                 </button>
-                            </div>
 
-                        </form>
+                            </form>
 
+                        </div>
+                    </div>
+
+                    <div class="card card-warning card-outline">
+
+                        <div class="card-header">
+                            <h3 class="card-title">Change Password</h3>
+                        </div>
+
+                        <div class="card-body">
+
+                            <form action="{{ route('admin.profile.password') }}" method="POST">
+                                @csrf
+
+                                <div class="form-group">
+                                    <label>Current Password</label>
+                                    <input type="password" name="current_password" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>New Password</label>
+                                    <input type="password" name="password" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password" name="password_confirmation" class="form-control" required>
+                                </div>
+
+                                <button class="btn btn-warning">
+                                    Change Password
+                                </button>
+
+                            </form>
+
+                        </div>
                     </div>
 
                 </div>
@@ -95,13 +120,12 @@
             </div>
 
         </div>
-    </section>
+    </div>
+
     <script>
         window.successMessage = @json(session('success'));
         window.errorMessage = @json($errors->first());
-    </script>
 
-    <script>
         document.getElementById('image').addEventListener('change', function() {
             if (this.files.length > 0) {
                 document.querySelector('.custom-file-label').innerText =
