@@ -25,10 +25,25 @@
                         );
                     @endphp
 
+                    @php
+                        $isActiveParent = false;
+
+                        if (!empty($menu['route']) && request()->routeIs($menu['route'])) {
+                            $isActiveParent = true;
+                        }
+
+                        foreach ($children as $child) {
+                            if (request()->routeIs($child['route'])) {
+                                $isActiveParent = true;
+                                break;
+                            }
+                        }
+                    @endphp
+
                     @if ($hasPermission || $children->isNotEmpty())
-                        <li class="nav-item {{ $children->isNotEmpty() ? 'menu-open' : '' }}">
+                        <li class="nav-item {{ $isActiveParent ? 'menu-open' : '' }}">
                             <a href="{{ $menu['route'] ? route($menu['route']) : '#' }}"
-                                class="nav-link {{ request()->routeIs($menu['route']) ? 'active' : '' }}">
+                                class="nav-link {{ $isActiveParent ? 'active' : '' }}">
                                 <i class="nav-icon {{ $menu['icon'] }}"></i>
                                 <p>
                                     {{ __($menu['title']) }}
