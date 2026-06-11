@@ -18,19 +18,6 @@ Route::get('/reports', function () {
     return view('reports.index');
 })->name('reports.index');
 
-Route::get('/admin/profile', [ProfileController::class, 'index'])->name('admin.profile');
-Route::post('/admin/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
-
-Route::middleware(['auth'])->group(function () {
-
-    Route::middleware('permission:user.view')->group(function () {
-        Route::get('users', [UserController::class, 'index'])->name('users.index');
-    });
-
-    Route::middleware(['auth', 'permission:dashboard.view'])->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    });
-});
 
 Route::get('/settings/general', function () {
     return view('settings.general');
@@ -59,6 +46,9 @@ Route::get('/language/{locale}', function ($locale) {
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
 
+    Route::middleware('permission:dashboard.view')->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::middleware('permission:user.view')->get('users', [UserController::class, 'index'])->name('users.index');
+
     Route::middleware('permission:user.create')->get('users/create', [UserController::class, 'create'])->name('users.create');
     Route::middleware('permission:user.create')->post('users/store', [UserController::class, 'store'])->name('users.store');
 
@@ -83,6 +73,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::middleware('permission:setting.edit')->post('settings', [SettingController::class, 'update'])->name('settings.update');
 
     Route::get('/activity-logs', [ActivityLogController::class, 'index'])->name('activity.logs');
+
+    Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile');
+    Route::post('profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
 });
 
 require __DIR__ . '/auth.php';
