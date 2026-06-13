@@ -13,5 +13,6 @@ return [
     'access_control' => 'অ্যাক্সেস কন্ট্রোল',
     'food' => 'খাবার',
     'ai_assistant' => 'এআই অ্যাসিস্ট্যান্ট',
+    'activity_logs' => 'কার্যকলাপ লগ',
 
 ];

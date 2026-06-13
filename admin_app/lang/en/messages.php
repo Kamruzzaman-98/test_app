@@ -13,5 +13,6 @@ return [
     'access_control' => 'Access Control',
     'food' => 'Food',
     'ai_assistant' => 'AI Assistant',
+    'activity_logs' => 'Activity Logs'
 
 ];

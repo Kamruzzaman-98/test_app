@@ -39,7 +39,7 @@ return [
     ],
 
     [
-        'title' => 'Activity Logs',
+        'title' => 'messages.activity_logs',
         'icon' => 'fas fa-history',
         'route' => 'activity.logs',
         'children' => [],
