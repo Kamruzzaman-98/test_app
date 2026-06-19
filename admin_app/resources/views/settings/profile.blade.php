@@ -17,7 +17,7 @@
 
                 <div class="col-md-4">
 
-                    <div class="card card-primary card-outline">
+                    <div class="card card-success card-outline">
                         <div class="card-body box-profile text-center">
 
                             @if ($user->image)
