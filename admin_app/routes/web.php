@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AIController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\ProductTestController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -79,5 +80,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::post('profile/password', [ProfileController::class, 'changePassword'])->name('admin.profile.password');
 });
+
+Route::get('/test-without-index', [ProductTestController::class, 'withoutIndex']);
+Route::get('/test-with-index', [ProductTestController::class, 'withIndex']);
 
 require __DIR__ . '/auth.php';

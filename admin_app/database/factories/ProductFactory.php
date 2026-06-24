@@ -10,7 +10,7 @@ class ProductFactory extends Factory
     {
         return [
             'name'  => fake()->words(3, true),
-            'sku'   => strtoupper(fake()->unique()->bothify('SKU-#####')),
+            'sku' => strtoupper(fake()->bothify('SKU-#####')),
             'price' => fake()->randomFloat(2, 10, 5000),
         ];
     }
