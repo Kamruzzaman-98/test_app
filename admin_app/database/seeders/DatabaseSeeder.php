@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Contracts\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +22,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ProductSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            UserSeeder::class
         ]);
 
         User::factory()->create([
