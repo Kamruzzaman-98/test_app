@@ -10,7 +10,7 @@ class ProductTestController extends Controller
     {
         $start = microtime(true);
 
-        $product = Product::where('sku', 'SKU-12450')->first();
+        $product = Product::where('sku', 'SKU-43587')->first();
 
         $end = microtime(true);
 
@@ -24,7 +24,7 @@ class ProductTestController extends Controller
     {
         $start = microtime(true);
 
-        $product = Product::where('sku', 'SKU-12450')->first();
+        $product = Product::where('sku', 'SKU-43587')->first();
 
         $end = microtime(true);
 
