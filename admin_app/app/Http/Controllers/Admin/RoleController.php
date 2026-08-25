@@ -67,16 +67,23 @@ class RoleController extends Controller
     }
 
 
-    public function editPermissions($id)
+    public function editPermissions(Role $role)
     {
-        $role = Role::findById($id);
+        $permissions = Permission::orderBy('name')->get();
 
-        $permissions = Permission::all();
+        $groupedPermissions = $permissions->groupBy(function ($permission) {
+            return explode('.', $permission->name)[0];
+        });
 
         $rolePermissions = $role->permissions->pluck('name')->toArray();
 
-        return view('admin.roles.permissions', compact('role', 'permissions', 'rolePermissions'));
+        return view('admin.roles.permissions', compact(
+            'role',
+            'groupedPermissions',
+            'rolePermissions'
+        ));
     }
+
 
     public function updatePermissions(Request $request, $id)
     {
